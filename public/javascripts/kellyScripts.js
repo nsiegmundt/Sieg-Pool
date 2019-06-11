@@ -84,18 +84,12 @@ function nameChange(){
 
 // Create player (if they are new) and assign them their balls
 function assignBalls() {
-  var ballArray = [];
-  while(ballArray.length < 15){
-      var ball = Math.floor(Math.random()*15) + 1;
-      if(ballArray.indexOf(ball) === -1) ballArray.push(ball);
-  }
-
   var numPlayers = $("#players").val();
   var numBalls = $("#balls").val();
 
   // If the number of players has changed, delete all players and restart
   if(numPlayers != localStorage.lastNumberOfPlayers){
-    $("#ballSpan").empty();
+    $("#playerDivs").empty();
   }
 
   localStorage.lastNumberOfPlayers = numPlayers;
@@ -108,15 +102,43 @@ function assignBalls() {
   else
     $("#errorSpan").hide();
 
+  // Generate randomized balls
+  var ballArray = [];
+  while(ballArray.length < numPlayers * numBalls){
+      var ball = Math.floor(Math.random()*15) + 1;
+      if(ballArray.indexOf(ball) === -1) ballArray.push(ball);
+  }
+
+  // Create player divs
   for(var i=0; i<numPlayers; i++){
     var playerID = 'player' + (i+1);
 
     // Check to see if playerName already exists. If player does not exists already, create new player
     if(!$('#' + playerID).length){
-      //"Show" or "Hide" button
-      //var showButton = $('<button/>').attr({ id: playerID, type:'button', class:'btn btn-secondary' }).html('Show?');
-      var buttonText = '<button id="' + playerID + 'Button" class="btn btn-secondary" type="button">Show?</button>';
-      $("#ballSpan").append('<span class="player-span" style="display: none" id="' + playerID + '"><b name="displayName">Player ' + (i+1) + ':</b> ' + buttonText + '</span><br/>');
+      // Create and append player elements to the player div
+      var playerDisplayName = $('<b/>').attr({
+                                      name:'displayName'
+                                    })
+                                    .html('Player ' + (i+1) + ':');
+      var playerBallsSpan = $('<span/>').attr({
+                                      id: playerID + 'Balls',
+                                      class: 'ball-position',
+                                    })
+                                    .css('display', 'none')
+      var showButton = $('<button/>').attr({ 
+                                      id: playerID + 'Button', 
+                                      type:'button', 
+                                      class:'btn btn-secondary' 
+                                    })
+                                    .html('Show?');
+      var playerIDSpan = $('<span/>').attr({
+                                      id: playerID,
+                                      class: 'player-span',
+                                    })
+                                    .css('display', 'none')
+                                    .append([playerDisplayName, playerBallsSpan, showButton])
+
+      $("#playerDivs").append(playerIDSpan);
     }
 
     // Set all buttons back to "Show?"
@@ -132,16 +154,12 @@ function assignBalls() {
     randomBalls.sort((a,b) => a - b);
     var randomBallsString = randomBalls.join(', ');
 
-    // Remove old ball numbers if they exist
-    $("#" + playerID).children("#" + playerID + "Balls").remove();
-
-    //This is the span that displays the players balls. This is what we will be hiding and showing
-    playerBallsSpan = '<span id = "' + playerID + 'Balls" class="ball-position" style="display: none">';
-    $(playerBallsSpan + randomBallsString + "</span>").insertBefore("#" + playerID + "Button");
+    // Replace old balls with new balls and hide all divs
+    $('#' + playerID + 'Balls').html(randomBallsString).hide();
   }
 
-  // Fade in all ball spans sequentially
-  $('#ballSpan').children('span').each(function(fadeInDiv){
+  // Fade in all player divs sequentially
+  $('#playerDivs').children('span').each(function(fadeInDiv){
     $(this).delay(fadeInDiv * 100).fadeIn(800);
   });
 }
