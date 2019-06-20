@@ -1,12 +1,82 @@
 body {
   display:none;
-  padding: 35px;
+  padding: 10px 35px 35px 35px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  white-space: nowrap;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav p {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav p:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+th, td {
+  padding: 7px !important;
+}
+
+table {
+  margin-bottom: 0 !important;
+}
+
+.leaderboardmodal-header{
+  border-bottom: 0px !important;
+}
+
+.leaderboardmodal-body{
+  padding-top: 0px !important;
+}
+
+.selectwinnermodal-body{
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav p {font-size: 18px;}
 }
 
 .btn-secondary{
   width: 68px !important;
   margin-left: 3px !important
+}
+
+.btn-selectwinner{
+  width: 200px !important;
+}
+
+.div-selectwinner{
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .ball-position{
@@ -16,6 +86,12 @@ body {
 
 .ball-position::before{
   content: "\00a0 ";
+}
+
+.options-span{
+  font-size:30px;
+  cursor:pointer;
+  margin-left: -10px
 }
 
 .player-span{
@@ -40,6 +116,10 @@ a {
 
 .span-error{
   color: red;
+}
+
+.span-success{
+  color: green;
 }
 
 .input-underline{

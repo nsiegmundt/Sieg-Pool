@@ -11,6 +11,7 @@ html
     script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js", integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=", crossorigin="anonymous")
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    script(src='/javascripts/sidenavScripts.js')
 
   body
     script.
@@ -18,4 +19,20 @@ html
       $(document).ready(function(){
         $('body').fadeIn(1500);
       });
+
+      function openNav() {
+        document.getElementById("mainSidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mainSidenav").style.width = "0";
+      }
+
+    #mainSidenav.sidenav
+      p.closebtn(onclick='closeNav()') ×
+      p(onclick="getLeaderBoard()") Leaderboard
+      p(onclick="populateSelectWinnerList()") Select Winner
+
+    span(class="options-span" onclick='openNav()') ☰ 
+    br
     block content

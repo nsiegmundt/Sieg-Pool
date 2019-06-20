@@ -1,16 +1,6 @@
 // Valdidation methods
 $(document).ready(function() {
-  // Main form validation rule
-  $("#mainForm").submit(function(e){
-     e.preventDefault();
-  }).validate({
-      errorElement: 'div',
-      errorClass: "input-error",
-      submitHandler: function(){
-        assignBalls();
-      }
-  });
-
+  // Rule for the players and balls input
   var rules = {
     required: true,
     min: 1,
@@ -24,20 +14,7 @@ $(document).ready(function() {
     }
   };
 
-  $("#players").rules("add", rules);
-  $("#balls").rules("add", rules);
-
-  // Validation for name change forum
-  $("#nameChangeForm").submit(function(e){
-    e.preventDefault();
-  }).validate({
-      errorElement: 'div',
-      errorClass: "input-error",
-      submitHandler: function(){
-        nameChange();
-      }
-  });
-
+  // Rules for the nameChange input
   var rulesNameChange = {
     required: true,
     maxlength: 12,
@@ -46,6 +23,35 @@ $(document).ready(function() {
       maxlength: jQuery.validator.format("Name can be no longer than 12 characters"),
     }
   };
+
+  // Main form validation rule
+  $("#mainForm").submit(function(e){
+     e.preventDefault();
+  }).validate({
+      errorElement: 'div',
+      errorClass: "input-error",
+      submitHandler: function(){
+        // Hide keyboard on mobile once form is submitted
+        $(".form-control").blur();
+        assignBalls();
+      }
+  });
+
+  $("#players").rules("add", rules);
+  $("#balls").rules("add", rules);
+
+  // Validation for name change form
+  $("#nameChangeForm").submit(function(e){
+    e.preventDefault();
+  }).validate({
+      errorElement: 'div',
+      errorClass: "input-error",
+      submitHandler: function(){
+        // Hide keyboard on mobile once form is submitted
+        $(".form-control").blur();
+        nameChange();
+      }
+  });
 
   $("#newName").rules("add", rulesNameChange);
 });
@@ -58,7 +64,7 @@ $(document).on('click touchstart','b[name=displayName]', function(){
 });
 
 // Show or hide the balls of a player
-$(document).on('click', "button[id$='Button']", function(){
+$(document).on('click', "#playerDivs > span > button", function(){
   playerBallSpan = $(this).siblings('span')
   playerBallSpan.animate({width:'toggle'}, 350).css({"white-space": "nowrap"}); 
   $(this).text(($(this).text() == "Show?" ? "Hide?" : "Show?"))
@@ -78,7 +84,7 @@ function nameChange(){
   currentPlayer = $("#playerIDEdit").val();
   newPlayerName = $("#newName").val();
 
-  $("#" + currentPlayer).children().eq(0).html(newPlayerName + ": ");
+  $("#" + currentPlayer).children().eq(0).html(newPlayerName + ":");
   $("#nameChangeModal").modal("toggle")
 }
 

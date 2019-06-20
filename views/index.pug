@@ -20,10 +20,13 @@ block content
             label.input-underline Balls:
             input#balls.form-control(name="ballInput" type='number', onfocus="this.value=''")
             br
-            button.btn.btn-primary(type='submit') Assign Balls
+            button.btn.btn-primary(type='submit' onfocus="blur();") Assign Balls
     #errorDiv.row.justify-content-center
       .col-sm-12.text-center
         span#errorSpan.span-error
+    #successDiv.row.justify-content-center
+      .col-sm-12.text-center
+        span#successSpan.span-success
     #ballDiv.row.justify-content-center
       .col-sm-12.text-center
         #playerDivs
@@ -40,9 +43,36 @@ block content
           .form-group
             .modal-body
                   label.input-underline Name:
-                  input#newName.form-control(type='text' onfocus="this.value=''")
+                  input#newName.form-control(type='text', name='newName', onfocus="this.value=''")
                   input#playerIDEdit(type='hidden', value='')
                   span#errorSpanModal.span-error
             .modal-footer
               button.btn.btn-secondary(type='button', data-dismiss='modal') Close
               button.btn.btn-primary(type='submit') Save Name
+
+  <!-- Leaderboard Modal -->
+  #leaderboardModal.modal.fade(tabindex='-1', role='dialog')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header.leaderboardmodal-header
+          h5.modal-title Leaderboard
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body.leaderboardmodal-body
+          table#leaderboardTable.table
+            thead
+              tr
+                th(scope='col') #
+                th(scope='col') Player
+                th(scope='col') Wins
+            tbody
+
+  <!-- Select Winner Modal -->
+  #selectWinnerModal.modal.fade(tabindex='-1', role='dialog')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title Select Winner...
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        #selectPlayer.modal-body.selectwinnermodal-body
