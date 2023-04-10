@@ -16,9 +16,9 @@ block content
         form#mainForm(action="javascript:void(0);")
           .form-group
             label.input-underline Players:
-            input#players.form-control(name="playerInput" type='number', onfocus="this.value=''")
+            input#players.form-control(name="playerInput" type='number' pattern="[0-9]*", onfocus="this.value=''")
             label.input-underline Balls:
-            input#balls.form-control(name="ballInput" type='number', onfocus="this.value=''")
+            input#balls.form-control(name="ballInput" type='number' pattern="[0-9]*", onfocus="this.value=''")
             br
             button.btn.btn-primary(type='submit' onfocus="blur();") Assign Balls
     #errorDiv.row.justify-content-center
