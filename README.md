@@ -2,7 +2,7 @@
 
 ## Link to website
 
-https://siegpool.herokuapp.com/ (best viewed on a mobile device)
+https://siegpool.onrender.com (best viewed on a mobile device)
 
 ## Overview
 
