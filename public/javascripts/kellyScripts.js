@@ -65,8 +65,11 @@ $(document).on('click touchstart','b[name=displayName]', function(){
 
 // Show or hide the balls of a player
 $(document).on('click', "#playerDivs > span > button", function(){
-  playerBallSpan = $(this).siblings('span')
-  playerBallSpan.animate({width:'toggle'}, 350).css({"white-space": "nowrap"}); 
+  playerBallSpan = $(this).siblings('span').css({"white-space": "nowrap"})
+  playerBallSpan.animate({width:'toggle'}, 350, function() {
+    playerBallSpan.css({"white-space": "wrap"}); 
+  }); 
+
   $(this).text(($(this).text() == "Show?" ? "Hide?" : "Show?"))
 
   // Hide all other players ball if it is showing
@@ -123,7 +126,8 @@ function assignBalls() {
     if(!$('#' + playerID).length){
       // Create and append player elements to the player div
       var playerDisplayName = $('<b/>').attr({
-                                      name:'displayName'
+                                      name:'displayName',
+                                      class:'display-name-div'
                                     })
                                     .html('Player ' + (i+1) + ':');
       var playerBallsSpan = $('<span/>').attr({
@@ -158,10 +162,10 @@ function assignBalls() {
 
     // Sort Balls and convert them to a comma separated string
     randomBalls.sort((a,b) => a - b);
-    var randomBallsString = randomBalls.join(', ');
+    var randomBallsHTMLString = randomBalls.map(x => `<img src="/images/ball${x}.png" title="ball-one icons" width="30px">`).join('\n');
 
     // Replace old balls with new balls and hide all divs
-    $('#' + playerID + 'Balls').html(randomBallsString).hide();
+    $('#' + playerID + 'Balls').html(randomBallsHTMLString).hide();
   }
 
   // Fade in all player divs sequentially
