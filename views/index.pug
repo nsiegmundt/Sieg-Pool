@@ -3,38 +3,42 @@ extends layout
 block content
   script(src='/javascripts/kellyScripts.js')
 
-  .container
-    .row.justify-content-center
-      .col-sm-12.text-center
-        h3.title-bold= title
-    .row.justify-content-center
-      .col-sm-12.text-center
-        h6 Please select the number of players and the number of balls per player.
-    hr
-    .row.justify-content-center
-      .col-sm-12
-        form#mainForm(action="javascript:void(0);")
-          .form-group
-            label.input-underline Players:
-            input#players.form-control(name="playerInput" type='number' pattern="[0-9]*", onfocus="this.value=''")
-            label.input-underline Balls:
-            input#balls.form-control(name="ballInput" type='number' pattern="[0-9]*", onfocus="this.value=''")
-            br
-            button.btn.btn-primary(type='submit' onfocus="blur();") Assign Balls
-    #errorDiv.row.justify-content-center
-      .col-sm-12.text-center
-        span#errorSpan.span-error
-    #successDiv.row.justify-content-center
-      .col-sm-12.text-center
-        span#successSpan.span-success
-    #ballDiv.row.justify-content-center
-      .col-sm-12.text-center
-        #playerDivs
+  .wrapper
+    .container
+      .row.justify-content-center
+        .col-sm-12.text-center
+          h3.title-bold= title
+      .row.justify-content-center
+        .col-sm-12.text-center
+          h6 Please select the number of players and the number of balls per player.
+      hr
+      .row.justify-content-center
+        .col-sm-12
+          form#mainForm(action="javascript:void(0);")
+            .form-group
+              label.input-underline Players:
+              input#players.form-control(name="playerInput" type='number' pattern="[0-9]*", onfocus="this.value=''")
+              label.input-underline Balls:
+              input#balls.form-control(name="ballInput" type='number' pattern="[0-9]*", onfocus="this.value=''")
+              br
+              button.btn.btn-primary(type='submit' onfocus="blur();") Assign Balls
+      #errorDiv.row.justify-content-center
+        .col-sm-12.text-center
+          span#errorSpan.span-error
+      #successDiv.row.justify-content-center
+        .col-sm-12.text-center
+          span#successSpan.span-success
+      #ballDiv.row.justify-content-center
+        .col-sm-12.text-center
+          #playerDivs
+
+    footer.footer
+      a.row.justify-content-center.attribution(href='https://www.flaticon.com/authors/boris-farias') Icons made by Boris farias - Flaticon
 
   <!-- Modal -->
   #nameChangeModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='nameChangeModal', aria-hidden='true')
     .modal-dialog.modal-dialog-centered(role='document')
-      .modal-content
+      .modal-content.name-change-modal
         .modal-header
           h5#exampleModalLabel.modal-title Edit Name...
           button.close(type='button', data-dismiss='modal', aria-label='Close')
@@ -49,7 +53,7 @@ block content
             .modal-footer
               button.btn.btn-secondary(type='button', data-dismiss='modal') Close
               button.btn.btn-primary(type='submit') Save Name
-
+//-
   <!-- Leaderboard Modal -->
   #leaderboardModal.modal.fade(tabindex='-1', role='dialog')
     .modal-dialog.modal-dialog-centered(role='document')

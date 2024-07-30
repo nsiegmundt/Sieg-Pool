@@ -27,15 +27,12 @@ html
       function closeNav() {
         document.getElementById("mainSidenav").style.width = "0";
       }
+    //-
+      #mainSidenav.sidenav
+        p.closebtn(onclick='closeNav()') ×
+        p(onclick="getLeaderBoard()") Leaderboard
+        p(onclick="populateSelectWinnerList()") Select Winner
 
-    #mainSidenav.sidenav
-      p.closebtn(onclick='closeNav()') ×
-      p(onclick="getLeaderBoard()") Leaderboard
-      p(onclick="populateSelectWinnerList()") Select Winner
-
-    span(class="options-span" onclick='openNav()') ☰ 
-    br
+      span(class="options-span" onclick='openNav()') ☰ 
+      br
     block content
-
-    footer.footer
-      a.row.justify-content-center.attribution(href='https://www.flaticon.com/authors/boris-farias') Icons made by Boris farias - Flaticon
