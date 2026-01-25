@@ -11,6 +11,11 @@ body, html {
   padding: 0;
 }
 
+hr {
+  margin-top: 10px  !important;
+  margin-bottom: 10px  !important;
+}
+
 .sidenav {
   height: 100%;
   width: 0;
@@ -85,7 +90,9 @@ table {
 
 .btn-secondary{
   width: 68px !important;
-  margin-left: 3px !important
+  margin-left: 6px !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
 }
 
 .btn-selectwinner{
@@ -142,6 +149,9 @@ a {
 
 .input-underline{
   text-decoration: underline;
+  font-weight: 900;
+  font-size: 15px;
+  margin-top: 5px;
 }
 
 .input-error{
@@ -160,6 +170,8 @@ hr {
 
 input[type='number'] {
   -moz-appearance:textfield;
+  font-weight: 900 !important;
+  font-size: 15px !important;
 }
 
 /* Webkit browsers like Safari and Chrome */
@@ -172,8 +184,20 @@ input[type=number]::-webkit-outer-spin-button {
 
 .display-name-div {
   white-space: nowrap;
+  font-size: 15px;
 }
 
 .footer {
   padding-bottom: 10px;
+}
+
+.logo-padding {
+  margin-left: 10px;
+  margin-bottom: 3px;
+  width: 40px;
+}
+
+.btn-styling {
+  font-weight: 900 !important;
+  font-size: 15px !important;
 }
