@@ -4,7 +4,7 @@ var siegPoolDB = require("../lib/siegpoolDB.js")
 
 // GET home page
 router.get('/', function(req, res, next) {
-  res.render('index', { title: "Sieg Pool Assistant" });
+  res.render('index', { title: "Sieg Pool" });
 });
 
 // GET leaderboard from postgres DB
