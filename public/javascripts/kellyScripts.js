@@ -114,8 +114,6 @@ function assignBalls() {
   var samePlayers = false;
   var numPlayers = $("#players").val();
   var numBalls = $("#balls").val();
-  console.log(numPlayers)
-  console.log(localStorage.lastNumberOfPlayers)
 
   // If the number of players has changed, delete all players and restart
   if(numPlayers != localStorage.lastNumberOfPlayers)
@@ -198,7 +196,6 @@ function assignBalls() {
   }
   else {
     // Shake the div up and down to convey that stuff has changed even though the amount of players are the same
-    console.log("Same Players")
     const $playerDiv = $('#playerDivs');
 
     // Restart animation if already running
