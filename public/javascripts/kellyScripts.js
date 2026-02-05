@@ -1,5 +1,7 @@
 // Valdidation methods
 $(document).ready(function() {
+  localStorage.lastNumberOfPlayers = 0;
+
   // Rule for the players and balls input
   var rules = {
     required: true,
@@ -54,6 +56,22 @@ $(document).ready(function() {
   });
 
   $("#newName").rules("add", rulesNameChange);
+  
+  // Logo bounce easter egg
+  $('#logo').on('click touchstart', function (e) {
+    e.preventDefault();
+
+    const $logo = $(this);
+
+    // Restart animation if already running
+    $logo.removeClass('logo-bounce');
+
+    // Force reflow so CSS animation restarts
+    void $logo[0].offsetWidth;
+
+    // Start bounce
+    $logo.addClass('logo-bounce');
+  });
 });
 
 // Show the name change modal and set the player value
@@ -93,13 +111,15 @@ function nameChange(){
 
 // Create player (if they are new) and assign them their balls
 function assignBalls() {
+  var samePlayers = false;
   var numPlayers = $("#players").val();
   var numBalls = $("#balls").val();
 
   // If the number of players has changed, delete all players and restart
-  if(numPlayers != localStorage.lastNumberOfPlayers){
+  if(numPlayers != localStorage.lastNumberOfPlayers)
     $("#playerDivs").empty();
-  }
+  else 
+    samePlayers = true;
 
   localStorage.lastNumberOfPlayers = numPlayers;
 
@@ -168,8 +188,23 @@ function assignBalls() {
     $('#' + playerID + 'Balls').html(randomBallsHTMLString).hide();
   }
 
-  // Fade in all player divs sequentially
-  $('#playerDivs').children('span').each(function(fadeInDiv){
-    $(this).delay(fadeInDiv * 100).fadeIn(800);
-  });
+  if(!samePlayers) {
+    // Fade in all player divs sequentially
+    $('#playerDivs').children('span').each(function(fadeInDiv){
+      $(this).delay(fadeInDiv * 100).fadeIn(800);
+    });    
+  }
+  else {
+    // Shake the div up and down to convey that stuff has changed even though the amount of players are the same
+    const $playerDiv = $('#playerDivs');
+
+    // Restart animation if already running
+    $playerDiv.removeClass('player-shake');
+
+    // Force reflow so CSS animation restarts
+    void $playerDiv[0].offsetWidth;
+
+    // Start bounce
+    $playerDiv.addClass('player-shake');
+  }
 }
