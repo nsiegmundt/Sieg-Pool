@@ -8,7 +8,7 @@ block content
       .row.justify-content-center
         .col-sm-12.text-center
           h3.title-bold= title 
-              img.logo-padding(src="/images/sieg-pool-logo-big.png")
+              img#logo.logo-padding(src="/images/sieg-pool-logo-big.png")
       .row.justify-content-center
         .col-sm-12.text-center
           h6 Please select the number of players and the number of balls per player.
@@ -48,12 +48,12 @@ block content
           .form-group
             .modal-body
                   label.input-underline Name:
-                  input#newName.form-control(type='text', name='newName', onfocus="this.value=''")
+                  input#newName.form-control(type='text', name='newName', onfocus="this.value=''" maxlength="12")
                   input#playerIDEdit(type='hidden', value='')
                   span#errorSpanModal.span-error
             .modal-footer
               button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-              button.btn.btn-primary(type='submit') Save Name
+              button.btn.btn-primary.btn-styling(type='submit') Save
 //-
   <!-- Leaderboard Modal -->
   #leaderboardModal.modal.fade(tabindex='-1', role='dialog')
