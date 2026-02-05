@@ -2,6 +2,11 @@
 $(document).ready(function() {
   localStorage.lastNumberOfPlayers = 0;
 
+  $('#nameChangeModal').modal({
+    focus: false,
+    show: false
+  });
+
   // Rule for the players and balls input
   var rules = {
     required: true,
